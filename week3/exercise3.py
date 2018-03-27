@@ -3,11 +3,7 @@
 Steps on the way to making your own guessing game.
 """
 
-
-from exercise1 import not_number_rejector
-from exercise1 import super_asker
 import random
-
 
 def advancedGuessingGame():
     """Play a guessing game with a user.
@@ -28,8 +24,39 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
-    return "You got it!"
+    go = False
 
+    print("\nWelcome to the guessing game!")
+    print("A number between lowerBound and upperBound ?")
+    while not go:
+        try:
+            lowerBound = int(input("Enter a lower bound: "))
+            upperBound = int(input("Enter an upper bound: "))
+            print("OK then, a number between {} and {} ?".format(lowerBound, upperBound))
+            go = True
+        except ValueError:
+            print('Thats not a number!')
+
+    actualNumber = random.randint(lowerBound, upperBound)
+
+    guessed = False
+
+    while not guessed:
+        try:
+            guessedNumber = int(input("Guess a number: "))
+            print("You guessed {},".format(guessedNumber),)
+            if guessedNumber == actualNumber:
+                print("You got it!! It was {}".format(actualNumber))
+                guessed = True
+                return "You got it!"
+            elif guessedNumber < lowerBound or guessedNumber > upperBound:
+                print('You are outside the bounds')
+            elif guessedNumber < actualNumber:
+                print("Too small, try again ")
+            else:
+                print("Too big, try again   ")
+        except ValueError:
+            print('That is not a number!')
 
 if __name__ == "__main__":
     advancedGuessingGame()

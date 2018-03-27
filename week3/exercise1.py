@@ -1,8 +1,7 @@
 # -*- coding: UTF-8 -*-
 """Week 3.
 
-Modify each function until the tests pass.
-"""
+Modify each function until the tests pass>"""
 
 
 
@@ -12,16 +11,26 @@ def loop_ranger(start, stop=None, step=1):
 
     Do this using any method apart from just using range()
     """
-    pass
-
+     #use while loop, make a range without range.
+    numbers = []
+    while start < 10:
+        numbers.append(start)
+        start = start + step
+        if start == 10:
+            start = stop
+            return numbers
 
 def lone_ranger(start, stop, step):
     """Duplicate the functionality of range.
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    pass
-
+    numbers = []
+    while start < stop:
+        numbers.append(start)
+        start = start + step   
+        if start >= stop:
+            return numbers
 
 def two_step_ranger(start, stop):
     """Make a range that steps by 2.
@@ -29,7 +38,12 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    pass
+    numbers = []
+    while start < stop:
+        numbers.append(start)
+        start = start + 2
+        if start >= stop:
+            return numbers   
 
 
 def stubborn_asker(low, high):
@@ -38,7 +52,13 @@ def stubborn_asker(low, high):
     Ask for a number, and if the response is outside the bounds keep asking
     until you get a number that you think is OK
     """
-    pass
+    while True:
+        number = int(input('Enter a number: '))
+        if low < number < high:
+            print(number, 'is correct')
+            return number
+        else:
+            print(number, 'is incorrect')
 
 
 def not_number_rejector(message):
@@ -48,8 +68,14 @@ def not_number_rejector(message):
     "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    pass
-
+    while True:
+        try:
+            message = int(input('Enter a number: '))       
+        except ValueError:
+            print('Thats not a number')
+        else:
+            return('Thats a number')
+        
 
 def super_asker(low, high):
     """Robust asking function.
@@ -57,7 +83,16 @@ def super_asker(low, high):
     Combine stubborn_asker and not_number_rejector to make a function
     that does it all!
     """
-    pass
+    while True:
+        try:
+            number = int(input('Enter a number: '))
+            if low < number < high:
+                print(number, 'is correct')
+                return number
+        except ValueError:
+            print('Thats not a number')
+        else:
+            print(number, 'is incorrect')
 
 
 if __name__ == "__main__":

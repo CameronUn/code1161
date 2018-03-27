@@ -3,6 +3,7 @@
 
 
 import math
+import random
 # import time
 
 
@@ -27,8 +28,17 @@ def binary_search(low, high, actual_number):
       (You should remove them from the file, not comment them out, the
       tests aren't that smart yet.)
     """
+    count = 1
+    guesses = int((low + high) / 2)
+    while actual_number != guesses:
+        if guesses < actual_number:
+            low = guesses
+        else:
+            high = guesses
+        guesses = int((low + high) / 2)
+        count = count + 1
 
-    return {"guess": guess, "tries": tries}
+    return {'guess': guesses, 'tries': count}
 
 
 if __name__ == "__main__":
