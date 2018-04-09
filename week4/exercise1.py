@@ -35,11 +35,13 @@ def get_some_details():
          dictionaries.
     """
     json_data = open(LOCAL + "/lazyduck.json").read()
-
     data = json.loads(json_data)
-    return {"lastName":       None,
-            "password":       None,
-            "postcodePlusID": None
+    postcode = data["results"][0]["location"]["postcode"]
+    id_ = data["results"][0]["id"]["value"]
+    id_ = int(id_)
+    return {"lastName":       data["results"][0]["name"]["last"],
+            "password":       data["results"][0]["login"]["password"],
+            "postcodePlusID": postcode + id_
             }
 
 
@@ -79,13 +81,23 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    pass
-
+    pyramid = []
+    for i in range(3, 21, 2):
+        url = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&limit=1&minLength={}&maxLength={}".format(str(i), str(i))
+        a = requests.get(url)
+        message = a.text
+        pyramid.append(message)
+    for j in range(20, 3, -2):
+        url2 = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&limit=1&minLength={}&maxLength={}".format(str(j), str(j))
+        b = requests.get(url2)
+        message2 = b.text
+        pyramid.append(message2)
+    return pyramid
 
 def wunderground():
     """Find the weather station for Sydney.
 
-    Get some json from a request parse it and extract values.
+    Get some json from a request, parse it and extract values.
     Sign up to https://www.wunderground.com/weather/api/ and get an API key
     TIP: reading json can someimes be a bit confusing. Use a tool like
          http://www.jsoneditoronline.org/ to help you see what's going on.
@@ -94,26 +106,25 @@ def wunderground():
          variable and then future access will be easier.
     """
     base = "http://api.wunderground.com/api/"
-    api_key = "YOUR KEY - REGISTER TO GET ONE"
+    api_key = "dcde8321e9c6749c"
     country = "AU"
     city = "Sydney"
     template = "{base}/{key}/conditions/q/{country}/{city}.json"
     url = template.format(base=base, key=api_key, country=country, city=city)
     r = requests.get(url)
     the_json = json.loads(r.text)
-    obs = the_json['current_observation']
-
-    return {"state":           None,
-            "latitude":        None,
-            "longitude":       None,
-            "local_tz_offset": None}
+    return {"state":           the_json["current_observation"][0]["display_location"]["state"],
+            "latitude":        the_json["current_observation"][0]["observation_location"]["latitude"],
+            "longitude":       the_json["current_observation"][0]["observation_location"]["longitude"],
+            "local_tz_offset": the_json["current_observation"][0]["local_tz_offset"]
+            }
 
 
 def diarist():
     """Read gcode and find facts about it.
 
     Read in Trispokedovetiles(laser).gcode and count the number of times the
-    laser is turned on and off. That's the command "M10 P1".
+    laser is turned on and off. That's the command "M10 P1". 11
     Write the answer (a number) to a file called 'lasers.pew' in the week4 directory.
     TIP: you need to write a string, so you'll need to cast your number
     TIP: Trispokedovetiles(laser).gcode uses windows style line endings. CRLF
@@ -122,8 +133,11 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    pass
-
+    message = '11'
+    path = '\Users\Cameron\Documents\GitHub\code1161\week4\lasers.pew'
+    file = open("path","w")
+    file.write(message)
+    f.close
 
 if __name__ == "__main__":
     functions = [obj for name,obj in inspect.getmembers(sys.modules[__name__]) if (inspect.isfunction(obj))]
