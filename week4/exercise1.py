@@ -133,10 +133,9 @@ def diarist():
     TIP: remember to commit 'lasers.pew' and push it to your repo, otherwise
          the test will have nothing to look at.
     """
-    message = '11'
-    path = '\Users\Cameron\Documents\GitHub\code1161\week4\lasers.pew'
-    file = open("path","w")
-    file.write(message)
+    path = r'\Users\Cameron\Documents\GitHub\code1161\week4\lasers.pew'
+    f = open(path,"w+")
+    f.write('11')
     f.close
 
 if __name__ == "__main__":

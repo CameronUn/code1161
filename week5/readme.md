@@ -1,1 +1,3 @@
 TODO: Reflect on what you learned this week and what is still unclear.
+We learned how to extract values from a json request and a little about recursions.
+I'm not quite sure what some of the questions are asking sometimes as in i will misinterpret what the question is really asking for. I am still slowly learning python so some of the exercises don't pass the tests, however i feel like i did them correctly in my week 4 exercise 1 such as the word pyramid. Also the wunderground doesn't show any problems but it doesn't pass so im not sure what's really going on there.
