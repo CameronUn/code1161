@@ -53,7 +53,7 @@ def countdown(message, start, stop, completion_message):
     for x in range(stop, start):
         print(message + str(count))
         count = count - 1
-    print (completion_message)
+    print(completion_message)
 
 # TRIANGLES
 
@@ -65,16 +65,18 @@ def countdown(message, start, stop, completion_message):
 # The stub functions are made for you, and each one is tested, so this should
 # hand hold quite nicely.
 def calculate_hypotenuse(base, height):
-    pass
-
+    step_one = base**2 + height**2
+    step_two = step_one**(.5)
+    return(step_two)
 
 def calculate_area(base, height):
-    pass
+    return(base*height*.5)
 
 
 def calculate_perimeter(base, height):
-    pass
-
+    step_one = base**2 + height**2
+    step_two = step_one**(.5)
+    return(base + height + step_two)
 
 def calculate_aspect(base, height):
     pass
@@ -172,12 +174,17 @@ def wordy_pyramid():
 
 
 def get_a_word_of_length_n(length):
-    pass
-
+    baseURL = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&limit=1&minLength={}&maxLength={}".format(str(length), str(length))
+    k = requests.get(baseURL)
+    message = k.text
+    return(message)
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
-
+    baseURL = "http://api.wordnik.com/v4/words.json/randomWords?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5&limit=1&minLength={}&maxLength={}".format(str(length), str(length))
+    k = requests.get(baseURL)
+    message = k.text
+    list_of_lengths = []
+    list_of_lengths.append(message)
 
 if __name__ == "__main__":
     do_bunch_of_bad_things()

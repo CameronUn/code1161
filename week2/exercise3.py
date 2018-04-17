@@ -27,7 +27,7 @@ def fix_it(moves=True, should_move=True):
             return "No Problem"
         else:
             return "Duct Tape"
-    else:
+    if moves == False:
         if should_move == True:
             return "WD-40"
         else:
