@@ -99,13 +99,12 @@ def best_letter_for_pets():
             "bali cattle", "gayal", "turkey", "goldfish", "rabbit", "koi",
             "canary", "society finch", "fancy mouse", "siamese fighting fish",
             "fancy rat and lab rat", "mink", "red fox", "hedgehog", "guppy"]
+    
     the_alphabet = string.ascii_lowercase
     letter_filter = [x for x in pets if the_alphabet in x]
-    return letter_filter
+    count = [(x, letter_filter.count(x)) for x in set(letter_filter)]
+    return count
     
-    
-
-
 def make_filler_text_dictionary():
     """Make a dictionary of random words filler text.
 
@@ -149,7 +148,7 @@ def random_filler_text(number_of_words=200):
         see line 77 of week4/hangman_leadboard.py for an example.
     """
     import random
-    pass
+    
 
 
 def fast_filler(number_of_words=200):
