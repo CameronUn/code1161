@@ -1,1 +1,2 @@
 TODO: Reflect on what you learned this week and what is still unclear.
+Definitely learned more about matplotlib, and pandas. I learnt how to use the basemap functions to create maps for my open data project. Have made 4 maps to help answer my question. Learning new concepts every week, so far nothing up to this week that was taught was unclear.
